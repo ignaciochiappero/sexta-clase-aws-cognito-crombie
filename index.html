@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket Cliente</title>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+  </head>
+  <body>
+    <h1>Cliente WebSocket</h1>
+
+    <script>
+      const socket = io("http://localhost:3000");
+
+      socket.on("connect", () => {
+        console.log("Conectado al servidor WebSocket");
+        socket.emit("message", "Hola Carlitos");
+      });
+
+      socket.on("stockUpdate", (data) => {
+        console.log("Stock actualizado:", JSON.stringify(data));
+      });
+
+      socket.on("message", (msg) => {
+        console.log(socket);
+
+        console.log("Mensaje recibido:", msg);
+      });
+    </script>
+  </body>
+</html>
